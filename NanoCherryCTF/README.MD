@@ -176,7 +176,7 @@ YOUR_IP cherryontop.tld
 
 After a few seconds you will receive a connection on our netcat listener congrats we have escalated to bob-boba :
 
-![Reverse shell](https://image.noelshack.com/fichiers/2024/27/6/1720280641-screenshot-from-2024-07-06-15-28-38.png)
+![Reverseshell](https://image.noelshack.com/fichiers/2024/27/6/1720280641-screenshot-from-2024-07-06-15-28-38.png)
 
 We stabilize our reverse shell as stated in this [page](https://maxat-akbanov.com/how-to-stabilize-a-simple-reverse-shell-to-a-fully-interactive-terminal)
 
