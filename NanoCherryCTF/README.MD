@@ -144,7 +144,7 @@ $ ls -la /home/bob-boba/coinflip.sh
 ls: cannot access '/home/bob-boba/coinflip.sh': Permission denied
 ```
 But we can modify /etc/hosts file 
-First in our local machine we create the same structured folder as curl by the cron job :
+First in our local machine we create the same structured folder as curled by the cron job :
 
 ```bash
 ┌──(david㉿kali)-[~/tryhackme]
