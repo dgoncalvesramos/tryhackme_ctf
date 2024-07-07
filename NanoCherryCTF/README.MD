@@ -201,5 +201,19 @@ Let's try to see if there is an SQLi. We open burpsuite and send the request to 
 ```
 Result in nothing. 
 
+After fuzzing the page I discovered that there was a users.db file at ``http://nano.cherryontop.thm/users.db``
+After opening the file we get the following credentials :
+![credentials](https://image.noelshack.com/fichiers/2024/27/7/1720367934-screenshot-from-2024-07-07-17-58-46.png)
+
+puppet:master 
+
+We login to the portal at we get the first flag :
+![flag](https://image.noelshack.com/fichiers/2024/27/7/1720368103-screenshot-from-2024-07-07-18-01-38.png)
+
+In the dashboard we discover molly-milk ssh password :
+![ssh-password](https://image.noelshack.com/fichiers/2024/27/7/1720368299-screenshot-from-2024-07-07-18-04-52.png)
+
+Credentials : 
+molly-milk:ChadCherrysFutureWife
 
 
