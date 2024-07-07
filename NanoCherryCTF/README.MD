@@ -3,7 +3,6 @@
 ## What is it ?
 
 A writeup for [tryhackme Nano Cherry CTF](https://tryhackme.com/r/room/nanocherryctf)
-This writeup is not complete as I still trying to solve the challenge
 
 ## Initial foothold
 
@@ -203,11 +202,12 @@ Result in nothing.
 
 After fuzzing the page I discovered that there was a users.db file at ``http://nano.cherryontop.thm/users.db``
 After opening the file we get the following credentials :
+
 ![credentials](https://image.noelshack.com/fichiers/2024/27/7/1720367934-screenshot-from-2024-07-07-17-58-46.png)
 
 puppet:master 
 
-We login to the portal at we get the first flag :
+We login in the portal and we get the first flag :
 ![flag](https://image.noelshack.com/fichiers/2024/27/7/1720368103-screenshot-from-2024-07-07-18-01-38.png)
 
 In the dashboard we discover molly-milk ssh password :
@@ -216,4 +216,75 @@ In the dashboard we discover molly-milk ssh password :
 Credentials : 
 molly-milk:ChadCherrysFutureWife
 
+We login and we get the second flag and first part of chad password :
+![flag](https://image.noelshack.com/fichiers/2024/27/7/1720368299-screenshot-from-2024-07-07-18-04-52.png)
 
+## Privilege escalation to sam-sprinkles user :
+
+Remember the content page where we found an XSS, after trying a lot of combinations with different users encoded in base32 and passed as parameters
+I found facts =43 and user = sam-sprinkles (in base32)
+http://cherryontop.thm/content.php?facts=43&user=ONQW2LLTOBZGS3TLNRSXG%3D%3D%3D 
+
+And there is the crendtials of sam-sprinkles :
+![credentials](https://image.noelshack.com/fichiers/2024/27/7/1720368848-screenshot-from-2024-07-07-18-14-00.png)
+sam-sprinkles:SammyInMiami43 
+We logon as sam-sprinkles and we retrieve the second part of chad passwords :
+
+```bash
+sam-sprinkles@nanocherryctf:~$ cat chads-key2.txt 
+w1llb3
+```
+## Privilege escalation to chad-cherry user :
+
+So with the three parts of chad password we got chad credentials :
+chad-cherry:n4n0ch3rryw1llb37h3fu7ur3
+
+We logon as chad-cherry :
+```bash
+sam-sprinkles@nanocherryctf:~$ su chad-cherry
+``` 
+We cat the flag :
+```bash
+chad-cherry@nanocherryctf:~$ cat chad-flag.txt 
+THM{P4SS3S_C0LL3CT3D}
+```
+And we cat the txt file, now ne know that root password is in ``rootPassword.wav`` 
+
+## Privilege escalation to root user :
+
+I copied the wav file into my local machine with scp :
+```bash                                                                               
+┌──(david㉿kali)-[~/tryhackme]
+└─$ scp chad-cherry@cherryontop.thm:/home/chad-cherry/rootPassword.wav /home/david/tryhackme/NanoCherryCTF
+chad-cherry@cherryontop.thm's password: 
+rootPassword.wav                              100% 3248KB   3.5MB/s   00:00  
+```
+it appeared to contain an SSTV (Slow Scan Television) signal. To extract the encoded information, I utilized an SSTV decoding tool:
+https://github.com/colaclanth/sstv
+
+```bash
+┌──(david㉿kali)-[~/tryhackme/sstv]
+└─$ sstv -d ../../tryhackme/NanoCherryCTF/rootPassword.wav -o result.png
+[sstv] Searching for calibration header... Found!    
+[sstv] Detected SSTV mode Robot 36
+[sstv] Decoding image...   [##############################################]  99%
+[sstv] Reached end of audio whilst decoding.
+[sstv] Drawing image data...
+[sstv] ...Done!
+```
+We get this result.png file :
+![result](https://image.noelshack.com/fichiers/2024/27/7/1720369927-result.png)
+
+We got root' credentials :
+root:NanoWillNeverBeOvertaken
+
+We logon as root :
+```bash
+chad-cherry@nanocherryctf:~$ su root
+Password: 
+```
+And we can cat the rootflag :
+```bash
+root@nanocherryctf:~# cat root-flag.txt 
+THM{YOU_NEVER_WERE_A_SCRIPT_KIDDIE}
+```
