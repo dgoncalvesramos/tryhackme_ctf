@@ -217,7 +217,6 @@ Credentials :
 molly-milk:ChadCherrysFutureWife
 
 We login and we get the second flag and first part of chad password :
-![flag](https://image.noelshack.com/fichiers/2024/27/7/1720368299-screenshot-from-2024-07-07-18-04-52.png)
 
 ## Privilege escalation to sam-sprinkles user :
 
