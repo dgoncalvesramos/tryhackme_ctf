@@ -225,7 +225,9 @@ I found facts =43 and user = sam-sprinkles (in base32)
 http://cherryontop.thm/content.php?facts=43&user=ONQW2LLTOBZGS3TLNRSXG%3D%3D%3D 
 
 And there is the crendtials of sam-sprinkles :
+
 ![credentials](https://image.noelshack.com/fichiers/2024/27/7/1720368848-screenshot-from-2024-07-07-18-14-00.png)
+
 sam-sprinkles:SammyInMiami43 
 We logon as sam-sprinkles and we retrieve the second part of chad passwords :
 
